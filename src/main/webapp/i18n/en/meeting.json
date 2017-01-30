@@ -1,0 +1,25 @@
+{
+    "meetmeApp": {
+        "meeting" : {
+            "home": {
+                "title": "Meetings",
+                "createLabel": "Create a new meeting",
+                "createOrEditLabel": "Create or edit a meeting",
+                "search": "Search for a meeting"
+            },
+            "created": "Created meeting: {{ param }}",
+            "updated": "Updated meeting: {{ param }}",
+            "deleted": "Deleted meeting: {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete meeting: {{ id }}?"
+            },
+            "detail": {
+                "title": "Meeting"
+            },
+            "name": "Name",
+            "key": "Key",
+            "app": "App",
+            "owner": "Owner"
+        }
+    }
+}

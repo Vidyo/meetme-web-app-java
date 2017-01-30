@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="meetmeApp.application.detail.title">Application</span> {{vm.application.name}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="meetmeApp.application.name">Name</span></dt>
+        <dd>
+            <span>{{vm.application.name}}</span>
+        </dd>
+        <dt><span data-translate="meetmeApp.application.key">Key</span></dt>
+        <dd>
+            <span>{{vm.application.key}}</span>
+        </dd>
+        <dt><span data-translate="meetmeApp.application.domain">Domain</span></dt>
+        <dd>
+            <span>{{vm.application.domain}}</span>
+        </dd>
+        <dt><span data-translate="meetmeApp.application.devKey">Dev Key</span></dt>
+        <dd>
+            <span>{{vm.application.devKey}}</span>
+        </dd>
+        <dt><span data-translate="meetmeApp.application.idpMetadata">Idp Metadata</span></dt>
+        <dd>
+            <span>{{vm.application.idpMetadata}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="application-detail.edit({id:vm.application.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

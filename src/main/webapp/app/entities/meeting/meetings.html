@@ -1,0 +1,72 @@
+<div>
+    <h2 data-translate="meetmeApp.meeting.home.title">Meetings</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="meeting.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="meetmeApp.meeting.home.createLabel">
+                        Create new Meeting
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="name"><span data-translate="meetmeApp.meeting.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th><span data-translate="meetmeApp.meeting.app">App</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th><span data-translate="Link">Link</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="meeting in vm.meetings track by meeting.id">
+                    <td><a ui-sref="meeting-detail({id:meeting.id})">{{meeting.name}}</a></td>
+                    <td>
+                        <a ui-sref="application-detail({id:meeting.appId})">{{meeting.appName}}</a>
+                    </td>
+                    <td>
+                        <a href="/join/{{meeting.appKey}}/{{meeting.key}}">{{vm.host}}/join/{{meeting.appKey}}/{{meeting.key}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="meeting-launch({appKey:meeting.appKey, meetingKey:meeting.key})"
+                                    class="btn btn-warning btn-sm">
+                                <span class="glyphicon glyphicon-new-window"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="Launch"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="meeting-detail({id:meeting.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="meeting.edit({id:meeting.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="meeting.delete({id:meeting.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

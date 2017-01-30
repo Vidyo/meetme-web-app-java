@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="http://www.okta.com/fake"><md:IDPSSODescriptor WantAuthnRequestsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol"><md:KeyDescriptor use="signing"><ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:X509Data><ds:X509Certificate>MIIDmjCCAoKgAwIBAgIGAVghMbtuMA0GCSqGSIb3DQEBBQUAMIGNMQswCQYDVQQGEwJVUzETMBEG
+A1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEU
+MBIGA1UECwwLU1NPUHJvdmlkZXIxDjAMBgNVBAMMBXZpZHlvMRwwGgYJKoZIhvcNAQkBFg1pbmZv
+QG9rdGEuY29tMB4XDTE2MTEwMTE4Mzk1N1oXDTI2MTEwMTE4NDA1N1owgY0xCzAJBgNVBAYTAlVT
+MRMwEQYDVQQIDApDYWxpZm9ybmlhMRYwFAYDVQQHDA1TYW4gRnJhbmNpc2NvMQ0wCwYDVQQKDARP
+a3RhMRQwEgYDVQQLDAtTU09Qcm92aWRlcjEOMAwGA1UEAwwFdmlkeW8xHDAaBgkqhkiG9w0BCQEW
+DWluZm9Ab2t0YS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC/B3ClsfQLN5v4
+lCp+3Q1FsXJtIt3k+GLzATE2BQLVoyjiasnWzJeccHzdiFyP+fCJrkFEDtPSnRcwgABVNO6iNDnX
+EQv8z6dHaHogZouUCjXhqibRtNiXybgioF9/yBtb2U84Ds9Y1pqbisn5/QkB9QiSrFmlMT6EcD9h
+fFcqgcRYMAUQJqaEYIT84QymabjT6lLO8IikudPhbi9TTl3gkkOnALtsOL+L93y/waHGf+3qW1oF
+zw3NlA86a4l+xCwFb//Dh71QP6FdqTdnDeerSOqPf38RRGgi7on5qz4Q9N2tKwEFNuDkXF7tKyjd
+9Qj5gRJp4lOD+acXNuquX6fVAgMBAAEwDQYJKoZIhvcNAQEFBQADggEBAFWyt8frsN2rj1lwVHRI
+mHmIL3FO2dwRy56Bvt2P6bMqTvaACijEos/PmDzCq/GFCM6stla51pyWxh6OAd/InNYatXgo6KTx
+BRZb8Gks98GVDuluvaVhHGs0eaoZWCTA+3z4Wk1pTV06fjvxgy6veb9goGMFHhiDtoecH1F2LhoE
+nuotzpttTvi3tYSjcBwIzgpPCzBaloiW7oQqpYcayB9wh4ct0ThOgLFrIvvwR/aiM7Wes3qZ3ZjH
+2ifDhO5wG+tBrqjTnfKf+afOkwjv6N8psqI/PhTdQZz+YIJqgseqx0UF/dClt3po+ytmMVej3Fsq
+NPoudLc45g4Jadgak68=</ds:X509Certificate></ds:X509Data></ds:KeyInfo></md:KeyDescriptor><md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat><md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat><md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://fake.oktapreview.com/app/meetmeapp_1/fake/sso/saml"/><md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://fake.oktapreview.com/app/meetmeapp_1/fake/sso/saml"/></md:IDPSSODescriptor></md:EntityDescriptor>

@@ -1,0 +1,5 @@
+
+MEETME VIDYO.IO
+
+${AnsiColor.BRIGHT_BLUE}:: Vidyo Inc.  :: Running Spring Boot ${spring-boot.version} ::
+:: http://meetme.vidyo.io ::${AnsiColor.DEFAULT}

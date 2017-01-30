@@ -1,0 +1,12 @@
+version: '2'
+services:
+    meetme-postgresql:
+        container_name: meetme-postgresql
+        image: postgres:9.5.4
+        # volumes:
+        #     - ~/volumes/jhipster/meetme/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=meetme
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5433:5432

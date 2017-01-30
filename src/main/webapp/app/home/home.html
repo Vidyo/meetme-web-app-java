@@ -1,0 +1,25 @@
+<div ng-cloak>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 data-translate="home.title">Welcome!</h1>
+            <p class="lead" data-translate="home.subtitle">Manage and configure pre-built vidyo.io applications.</p>
+            <div ng-switch="vm.isAuthenticated()">
+                <div class="alert alert-danger" ng-switch-when="false">
+                    You are not logged in.
+                </div>
+                <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
+                    You are logged in as user "{{vm.account.login}}".
+                </div>
+                <div ng-switch-when="true" >
+                    STEPS:<br />
+                    <ol>
+                        <li>Create a <a href="#application">Application</a> with an appId (domain) and devKey from vidyo.io</li>
+                        <li>Create a <a href="#meeting">Meeting</a> for a given Application</li>
+                        <li>Invite others with the meeting link created.</li>
+                    </ol>
+                </div>
+             </div>
+
+        </div>
+    </div>
+</div>

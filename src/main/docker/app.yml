@@ -1,0 +1,16 @@
+version: '2'
+services:
+    meetme-app:
+        image: meetme
+        external_links:
+            - meetme-postgresql:postgresql
+        environment:
+            - SPRING_PROFILES_ACTIVE=dev,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/meetme
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8082:8080
+    meetme-postgresql:
+        extends:
+            file: postgresql.yml
+            service: meetme-postgresql

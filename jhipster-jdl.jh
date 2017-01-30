@@ -1,0 +1,35 @@
+entity Application {
+    id Long required,
+	name String required maxlength(255),
+    key String required maxlength(64),
+	domain String required maxlength(255),
+	devKey String required maxlength(255),
+	idpMetadata TextBlob
+}
+
+entity Meeting {
+	id Long required,
+    name String required maxlength(255),
+    key String required maxlength(64)
+}
+
+relationship ManyToOne{
+        Application{owner} to User
+}
+
+relationship ManyToOne{
+        Meeting{app} to Application
+}
+
+relationship ManyToOne{
+        Meeting{owner} to User
+}
+
+// Set pagination options
+paginate Application with pagination
+paginate Meeting with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
