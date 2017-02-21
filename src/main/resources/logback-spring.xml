@@ -45,7 +45,7 @@
     <logger name="org.springframework.security" level="WARN"/>
     <logger name="org.springframework.cache" level="WARN"/>
     <logger name="org.opensaml" level="WARN"/>
-    <logger name="PROTOCOL_MESSAGE" level="DEBUG" />
+    <logger name="PROTOCOL_MESSAGE" level="WARN" />
     <logger name="org.thymeleaf" level="WARN"/>
     <logger name="org.xnio" level="WARN"/>
     <logger name="springfox" level="WARN"/>
