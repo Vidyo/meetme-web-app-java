@@ -12,6 +12,8 @@ function StartVidyoConnector(VC) {
         viewStyle: "VIDYO_CONNECTORVIEWSTYLE_Tiles", // Visual style of the composited renderer
         remoteParticipants: 16,     // Maximum number of participants
         logFileFilter: "warning all@VidyoConnector info@VidyoClient",
+        logFileName:"",
+        userData:""
     }).then(function(vc) {
         vidyoConnector = vc;
         if (autoJoin(vidyoConnector)) {
@@ -19,8 +21,8 @@ function StartVidyoConnector(VC) {
         }
         registerDeviceListeners(vidyoConnector, cameras, microphones, speakers);
         handleDeviceChange(vidyoConnector, cameras, microphones, speakers);
-    }).catch(function() {
-        console.error("CreateVidyoConnector Failed");
+    }).catch(function(err) {
+        console.error("CreateVidyoConnector Failed " + err);
     });
 
     // Handle the camera privacy button, toggle between show and hide.
@@ -91,19 +93,23 @@ function StartVidyoConnector(VC) {
 function registerDeviceListeners(vidyoConnector, cameras, microphones, speakers) {
     // Handle appearance and disappearance of camera devices in the system
     vidyoConnector.RegisterLocalCameraEventListener({
-        onAdded: function(camera) {
+        onAdded: function(localCamera) {
             // New camera is available
-            $("#cameras").append("<option value='" + camera.id + "'>" + camera.name + "</option>");
-            cameras[camera.id] = camera;
+            $("#cameras").append("<option value='" + window.btoa(localCamera.id) + "'>" + localCamera.name + "</option>");
+            cameras[window.btoa(localCamera.id)] = localCamera;
         },
-        onRemoved: function(camera) {
+        onRemoved: function(localCamera) {
             // Existing camera became unavailable
-            $("#cameras option[value='" + camera.id + "']").remove();
-            delete cameras[camera.id];
+            $("#cameras option[value='" + window.btoa(localCamera.id) + "']").remove();
+            delete cameras[window.btoa(localCamera.id)];
         },
-        onSelected: function(camera) {
-            // Camera was selected by you or automatically
-            $("#cameras option[value='" + camera.id + "']").prop('selected', true);
+        onSelected: function(localCamera) {
+            // Camera was selected/unselected by you or automatically
+			if(localCamera)
+				$("#cameras option[value='" + window.btoa(localCamera.id) + "']").prop('selected', true);
+        },
+        onStateUpdated: function(localCamera, state) {
+            // Camera state was updated
         }
     }).then(function() {
         console.log("RegisterLocalCameraEventListener Success");
@@ -114,19 +120,23 @@ function registerDeviceListeners(vidyoConnector, cameras, microphones, speakers)
 
     // Handle appearance and disappearance of microphone devices in the system
     vidyoConnector.RegisterLocalMicrophoneEventListener({
-        onAdded: function(microphone) {
+        onAdded: function(localMicrophone) {
             // New microphone is available
-            $("#microphones").append("<option value='" + microphone.id + "'>" + microphone.name + "</option>");
-            microphones[microphone.id] = microphone;
+            $("#microphones").append("<option value='" + window.btoa(localMicrophone.id) + "'>" + localMicrophone.name + "</option>");
+            microphones[window.btoa(localMicrophone.id)] = localMicrophone;
         },
-        onRemoved: function(microphone) {
+        onRemoved: function(localMicrophone) {
             // Existing microphone became unavailable
-            $("#microphones option[value='" + microphone.id + "']").remove();
-            delete microphones[microphone.id];
+            $("#microphones option[value='" + window.btoa(localMicrophone.id) + "']").remove();
+            delete microphones[window.btoa(localMicrophone.id)];
         },
-        onSelected: function(microphone) {
-            // Microphone was selected by you or automatically
-            $("#microphones option[value='" + microphone.id + "']").prop('selected', true);
+        onSelected: function(localMicrophone) {
+            // Microphone was selected/unselected by you or automatically
+			if(localMicrophone)
+			    $("#microphones option[value='" + window.btoa(localMicrophone.id) + "']").prop('selected', true);
+        },
+        onStateUpdated: function(localMicrophone, state) {
+            // Microphone state was updated
         }
     }).then(function() {
         console.log("RegisterLocalMicrophoneEventListener Success");
@@ -136,19 +146,23 @@ function registerDeviceListeners(vidyoConnector, cameras, microphones, speakers)
 
     // Handle appearance and disappearance of speaker devices in the system
     vidyoConnector.RegisterLocalSpeakerEventListener({
-        onAdded: function(speaker) {
+        onAdded: function(localSpeaker) {
             // New speaker is available
-            $("#speakers").append("<option value='" + speaker.id + "'>" + speaker.name + "</option>");
-            speakers[speaker.id] = speaker;
+            $("#speakers").append("<option value='" + window.btoa(localSpeaker.id) + "'>" + localSpeaker.name + "</option>");
+            speakers[window.btoa(localSpeaker.id)] = localSpeaker;
         },
-        onRemoved: function(speaker) {
+        onRemoved: function(localSpeaker) {
             // Existing speaker became unavailable
-            $("#speakers option[value='" + speaker.id + "']").remove();
-            delete speakers[speaker.id];
+            $("#speakers option[value='" + window.btoa(localSpeaker.id) + "']").remove();
+            delete speakers[window.btoa(localSpeaker.id)];
         },
-        onSelected: function(speaker) {
-            // Speaker was selected by you or automatically
-            $("#speakers option[value='" + speaker.id + "']").prop('selected', true);
+        onSelected: function(localSpeaker) {
+            // Speaker was selected/unselected by you or automatically
+			if(localSpeaker)
+			    $("#speakers option[value='" + window.btoa(localSpeaker.id) + "']").prop('selected', true);
+        },
+        onStateUpdated: function(localSpeaker, state) {
+            // Speaker state was updated
         }
     }).then(function() {
         console.log("RegisterLocalSpeakerEventListener Success");
@@ -164,7 +178,7 @@ function handleDeviceChange(vidyoConnector, cameras, microphones, speakers) {
         $("#cameras option:selected").each(function() {
             camera = cameras[$(this).val()];
             vidyoConnector.SelectLocalCamera({
-                camera: camera
+                localCamera: camera
             }).then(function() {
                 console.log("SelectCamera Success");
             }).catch(function() {
@@ -179,7 +193,7 @@ function handleDeviceChange(vidyoConnector, cameras, microphones, speakers) {
         $("#microphones option:selected").each(function() {
             microphone = microphones[$(this).val()];
             vidyoConnector.SelectLocalMicrophone({
-                microphone: microphone
+                localMicrophone: microphone
             }).then(function() {
                 console.log("SelectMicrophone Success");
             }).catch(function() {
@@ -194,7 +208,7 @@ function handleDeviceChange(vidyoConnector, cameras, microphones, speakers) {
         $("#speakers option:selected").each(function() {
             speaker = speakers[$(this).val()];
             vidyoConnector.SelectLocalSpeaker({
-                speaker: speaker
+                localSpeaker: speaker
             }).then(function() {
                 console.log("SelectSpeaker Success");
             }).catch(function() {
