@@ -4,19 +4,32 @@
             <h1 data-translate="home.title">Welcome!</h1>
             <p class="lead" data-translate="home.subtitle">Manage and configure pre-built vidyo.io applications.</p>
             <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-danger" ng-switch-when="false">
-                    You are not logged in.
+                <div ng-switch-when="false">
+                    You are not logged in. Click <a href="/saml/login">here</a> to login <b>using your vidyo.io credentials</b>.
+                    <h2>Introduction</h2>
+                    <p>Meetme is a multi-party video conferencing web application, based on the <a href="https://vidyo.io" target="_blank">vidyo.io</a> platform, that allows you to meet with anyone in the world with a single link. This application is open-source and is available for download on <a href="https://github.com/Vidyo/meetme-web-app-java" target="_blank">GitHub</a>.</p>
                 </div>
                 <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
                     You are logged in as user "{{vm.account.login}}".
                 </div>
                 <div ng-switch-when="true" >
-                    STEPS:<br />
+                    <h2>Introduction</h2>
+                    <p>Meetme is a multi-party video conferencing web application, based on the <a href="https://vidyo.io" target="_blank">vidyo.io</a> platform, that allows you to meet with anyone in the world with a single link. This application is open-source and is available for download on <a href="https://github.com/Vidyo/meetme-web-app-java" target="_blank">GitHub</a>.</p>
+<h2>Geting Started</h2>
+                    <p>Before we get started we need a little bit of information to configure your first meetme application:</p>
                     <ol>
-                        <li>Create a <a href="#application">Application</a> with an appId (domain) and devKey from vidyo.io</li>
-                        <li>Create a <a href="#meeting">Meeting</a> for a given Application</li>
-                        <li>Invite others with the meeting link created.</li>
+                        <li>Grab an <b>Application ID</b> and <b>Developer Key</b> from your <a href="https://developer.vidyo.io/dashboard#tab_apikey" target="_blank">API Key</a>'s. They are used to create tokens automatically and will always remain hidden.</li>
+                        <li>Create a <a href="/#/application/new">Application</a> with an Application ID (domain) and Developer Key from vidyo.io.</li>
+                        <li>Create a <a href="/#/meeting/new">Meeting</a> for a given Application.</li>
+                        <li>Try out the meeting link by clicking the Launch button.</li>
+                        <li>Invite others with the meeting link you just created.</li>
                     </ol>
+                    <h2>Notes</h2>
+                    <ul>
+                        <li>Your vidyo.io Application ID and Developer Key are kept private at all times.</li>
+                        <li>The links are are not guessable so no one can use your minutes without knowing the specific meeting link. Delete meeting links once a meeting is over for the greatest security.</li>
+                        <li>If you need more features than those available, this application is open-source and you can modify it as you need on <a href="https://github.com/Vidyo/meetme-web-app-java">GitHub</a>.</li>
+                    </ul>
                 </div>
              </div>
 
